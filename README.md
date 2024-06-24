@@ -1,2 +1,2 @@
-# Isabel Hormaeche Portfolio Application
+# Isabel Hormaeche React Portfolio Application
 
