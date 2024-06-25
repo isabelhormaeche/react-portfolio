@@ -5,7 +5,17 @@ import PortfolioItem from "./portfolio-item";
 export default class PortfolioContainer extends Component {
    constructor() {
     super();
+
     console.log("Portfolio container has rendered");
+   }
+   
+   portfolioItems() {
+    const data = ["Quip", "Evenbrite", "Ministry safe", "SwingAway"];
+
+    return data.map(item => {
+        return <PortfolioItem />;
+        // return <h1>{item}</h1>;
+    })
    }
 
     render() {
@@ -13,7 +23,7 @@ export default class PortfolioContainer extends Component {
             <div>
                 <h2>Portfolio items go here updated...</h2>
 
-                <PortfolioItem />
+                {this.portfolioItems()} 
             </div>
 
         );
