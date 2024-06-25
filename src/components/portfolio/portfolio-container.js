@@ -13,8 +13,8 @@ export default class PortfolioContainer extends Component {
     const data = ["Quip", "Evenbrite", "Ministry safe", "SwingAway"];
 
     return data.map(item => {
-        return <PortfolioItem />;
-        // return <h1>{item}</h1>;
+        return <PortfolioItem title={item} url={"google.com"}/>;
+        // return <h1>{item}</h1>; // string interpolation
     })
    }
 
