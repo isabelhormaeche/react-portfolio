@@ -15,16 +15,22 @@ export default class PortfolioContainer extends Component {
             {title: "SwingAway" }
         ]
     };
+    this.handlePageTitleUpdate = this.handlePageTitleUpdate.bind(this);
    }
    
    portfolioItems() {
-    
-
     return this.state.data.map(item => {
         return <PortfolioItem title={item.title} url={"google.com"}/>;
-        // return <h1>{item}</h1>; // string interpolation
-    })
+    });
    }
+
+
+   handlePageTitleUpdate() {
+    this.setState({
+      pageTitle: "Something Else"
+    });
+  }
+
 
     render() {
         return (
@@ -32,8 +38,11 @@ export default class PortfolioContainer extends Component {
                 <h2>{this.state.pageTitle}</h2>
 
                 {this.portfolioItems()} 
-            </div>
 
+                <hr />
+
+                <button onClick={this.handlePageTitleUpdate}>Change Title</button>
+            </div>
         );
     }
 }
