@@ -29,6 +29,8 @@ export default class PortfolioContainer extends Component {
     });
 
    }
+// el argumento podía llamarse también "selectedCategory" o algo similar para que coincida con el propósito de la función
+
    
    portfolioItems() {
     return this.state.data.map(item => {
