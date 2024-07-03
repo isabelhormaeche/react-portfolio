@@ -11,7 +11,10 @@
         height: 22px;
         border-bottom: 1px solid transparent;
         transition: 0.5s ease-in-out;
-    
+
+        margin-right: 20px;
+        text-transform: uppercase;
+        font-size: 0.9rem;
 
         a {
             color: $grey;
@@ -24,8 +27,19 @@
         &:hover {
             border-bottom: 1px solid black;
         }
-
+// lo ponemos debajo de "a" y "hover" por el tema orden/overwrite de SCSS:
+        .nav-link-active{
+            border-bottom: 1px solid black;
+            color: black;
+        }
     }
+// También podemos sacarlo del nav-link-wrapper y dejaría de estar nested inside:
+    // .nav-link-active{
+    //     border-bottom: 1px solid black;
+    //     a{
+    //         color: black;
+    //     }
+
 }
 
 
