@@ -9,7 +9,8 @@ export default class NavigationContainer extends Component {
 
     render(){
         return (
-            <div>
+            <div className="nav-wrapper">
+                <div className="left-side">
             <NavLink exact to="/" activeClassName="nav-link-active">
                 Home
             </NavLink>
@@ -27,6 +28,8 @@ export default class NavigationContainer extends Component {
             </NavLink>
 
                 {true ? <button>Add Blog</button> : null }
+                </div>
+                <div className="right-side">ISABEL HORMAECHE</div>
             </div>
         );
     }
