@@ -11,25 +11,33 @@ export default class NavigationContainer extends Component {
         return (
             <div className="nav-wrapper">
                 <div className="left-side">
-            <NavLink exact to="/" activeClassName="nav-link-active">
-                Home
-            </NavLink>
-            
-            <NavLink exact to="/about-me" activeClassName="nav-link-active">
-                About
-            </NavLink>
+                    <div className="nav-link-wrapper">
+                        <NavLink exact to="/" activeClassName="nav-link-active">
+                            Home
+                        </NavLink>
+                    </div>
 
-            <NavLink exact to="/contact"activeClassName="nav-link-active">
-                Contact
-            </NavLink>
+                    <div className="nav-link-wrapper">
+                        <NavLink exact to="/about-me" activeClassName="nav-link-active">
+                            About
+                        </NavLink>
+                    </div>
 
-            <NavLink exact to="/blog" activeClassName="nav-link-active">
-                Blog
-            </NavLink>
+                    <div className="nav-link-wrapper">
+                    <NavLink exact to="/contact"activeClassName="nav-link-active">
+                        Contact
+                    </NavLink>
+                    </div>
 
-                {true ? <button>Add Blog</button> : null }
+                    <div className="nav-link-wrapper">
+                    <NavLink exact to="/blog" activeClassName="nav-link-active">
+                        Blog
+                    </NavLink>
+                    </div>
                 </div>
+                
                 <div className="right-side">ISABEL HORMAECHE</div>
+
             </div>
         );
     }
