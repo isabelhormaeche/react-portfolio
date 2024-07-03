@@ -46,8 +46,6 @@ export default class PortfolioContainer extends Component {
     }
 
     portfolioItems() {
-
-        
     return this.state.data.map(item => {
         return (
         <PortfolioItem 
@@ -63,13 +61,10 @@ export default class PortfolioContainer extends Component {
    }
 
 
-
     render() {
         if (this.state.isLoading) {
             return <div>Loading...</div>
         }
-
-    
 
         return (
             <div>
@@ -78,8 +73,10 @@ export default class PortfolioContainer extends Component {
                 <button onClick={() => this.handeFilter("eCommerce")}>eCommerce</button>
                 <button onClick={() => this.handeFilter("Scheduling")}>Scheduling</button>
                 <button onClick={() => this.handeFilter("Enterprise")}>Enterprise</button>
-
+               
+                <div className="portfolio-items-wrapper">
                 {this.portfolioItems()} 
+                </div>
 
             </div>
         );

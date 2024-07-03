@@ -2,15 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function(props) {
-        // Data that we´ll need:
-        // - background image: thumb_image_url
-        // - log
-        // - description: description
-        // - id: id
-
-        const { id, description, thumb_image_url, logo} = props.item;
+    const { id, description, thumb_image_url, logo} = props.item;
     return (
-        <div>
+        <div className="portfolio-item-wrapper">
             <img src = {thumb_image_url} />
             <img src = {logo} />
             <div>{description}</div>
