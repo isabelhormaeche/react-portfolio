@@ -21,7 +21,19 @@ export default class Login extends Component {
     }
 
     handleSubmit(event) {
-        console.log("Handle submit", this.state.email, this.state.password);
+        // We create a session in the server
+         axios
+         .post("https://api.devcamp.space/sessions",
+         {
+             client: {
+                 email: this.state.email,
+                 password: this.state.password
+             }
+         },
+         { withCredentials: true }
+         ) .then(response => {
+             console.log("response", response);
+         });
 
         event.preventDefault();
     }
@@ -31,8 +43,8 @@ export default class Login extends Component {
             <div>
                 <h1>LOGING TO ACCESS YOUR DASHBOARD</h1>
 
-                <h2>{this.state.email}</h2>
-                <h2>{this.state.password}</h2>
+                {/* <h2>{this.state.email}</h2>
+                <h2>{this.state.password}</h2> */}
 
                 <form onSubmit={this.handleSubmit}>
 
