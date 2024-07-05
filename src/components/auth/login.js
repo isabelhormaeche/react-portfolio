@@ -10,19 +10,18 @@ export default class Login extends Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
-        this.handlesumbit = this.handleSubmit.bind(this);
+        this.handleSumbit = this.handleSubmit.bind(this);
     }
 
     handleChange(event) {
-        // console.log("Handle change", event);
-        // debugger;
         this.setState({
-             [event.target.name]: event.target.value
+            [event.target.name]: event.target.value
          });
     }
 
     handleSubmit(event) {
-        console.log("Handle submit", event);
+        console.log("Handle submit", this.state.email, this.state.password);
+        event.preventDefault();
     }
 
     render() {
@@ -33,22 +32,22 @@ export default class Login extends Component {
                 <h2>{this.state.email}</h2>
                 <h2>{this.state.password}</h2>
 
-                <form onSubmit={this.handlesubmit}>
+                <form onSubmit={this.handleSubmit}>
 
                     <input 
-                    type="email" // specific to HTML
-                    name="email" // same name as the one choosen in state
-                    placeholder="Your email"
-                    value={this.state.email}
-                    onChange={this.handleChange}
+                        type="email" 
+                        name="email" 
+                        placeholder="Your email"
+                        value={this.state.email}
+                        onChange={this.handleChange}
                     />
 
                     <input
-                     type="password" // specific to HTML
-                     name="password" // same name as the one choosen in state
-                     placeholder="Your password"
-                     value={this.state.password}
-                     onChange={this.handleChange}
+                        type="password" 
+                        name="password" 
+                        placeholder="Your password"
+                        value={this.state.password}
+                        onChange={this.handleChange}
                     />
 
                     <div>
