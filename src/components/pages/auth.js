@@ -11,8 +11,10 @@ export default class Auth extends Component {
     }
 
     handleSuccessfulAuth() {
+        //console.log("Se está ejecutando");
         this.props.handleSuccessfulLogin();
         this.props.history.push("/");
+        //console.log("Se está ejecutando después del history");
     }
     
     handleUnsuccessfulAuth() {

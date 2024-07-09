@@ -29,14 +29,18 @@ export default class App extends Component {
   
   
   handleSuccessfulLogin() {
-    this.setState = ({ 
+    //console.log("Esta función se activa");
+    this.setState ({ 
+      // ojo!! sin "=", this.setState = ({....}) porque crearíamos un estado nuevo en lugar de actualizarlo
       loggedInStatus: "LOGGED_IN"
-  });
+    });
+    //console.log("Actualización de estado", this.state.loggedInStatus);
+
   }
   
   
   handleUnsuccessfulLogin() {
-    this.setState = ({ 
+    this.setState  ({ 
       loggedInStatus: "NOT_LOGGED_IN"
   });
   }
