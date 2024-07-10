@@ -3,6 +3,16 @@ import { NavLink} from "react-router-dom";
 
 
 const NavigationComponent = (props) => {
+    const dynamicLink = (route, LinkText) => {
+        return (
+            <div className="nav-link-wrapper">
+            <NavLink exact to="/blog" activeClassName="nav-link-active">
+                Blog
+            </NavLink>
+            </div>
+        );
+    };
+
         return (
             <div className="nav-wrapper">
                 <div className="left-side">
@@ -24,11 +34,11 @@ const NavigationComponent = (props) => {
                     </NavLink>
                     </div>
 
-                    <div className="nav-link-wrapper">
-                    <NavLink exact to="/blog" activeClassName="nav-link-active">
-                        Blog
-                    </NavLink>
-                    </div>
+                    {props.loggedInStatus === "LOGGED_IN" ? (
+                        dynamicLink("/blog", "Blog")
+                    ) : null }
+
+                    
                 </div>
                 
                 <div className="right-side">ISABEL HORMAECHE</div>
