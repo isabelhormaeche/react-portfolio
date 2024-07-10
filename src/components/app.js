@@ -82,6 +82,12 @@ export default class App extends Component {
     this.checkLoginStatus();
     console.log("se activa componentDidMount");
   }
+
+  authorizedPages() {
+    return [<Route path="/blog" component={Blog} />];
+  }
+
+
         
   
 
@@ -115,7 +121,10 @@ export default class App extends Component {
               
               <Route path="/about-me" component={About} />
               <Route path="/contact" component={Contact} />
-              <Route path="/blog" component={Blog} />
+              {this.state.loggedInStatus === "LOGGED_IN" ? (
+                this.authorizedPages()
+              ) : null }
+              
               <Route
                 exact
                 path="/portfolio/:slug"
