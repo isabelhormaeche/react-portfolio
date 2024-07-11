@@ -16,10 +16,19 @@ export default class PortfolioForm extends Component {
       };
 
       this.handleChange = this.handleChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(event){
-      console.log("handle change", event);
+      //console.log("handle change", event);
+      this.setState({
+        [event.target.name]:event.target.value
+      });
+    }
+
+    handleSubmit (event) {
+      console.log("event", event);
+      event.preventDefault();
     }
 
 
@@ -28,7 +37,7 @@ export default class PortfolioForm extends Component {
       <div>
         <h1>PortfolioForm</h1>
       
-      <form>
+        <form onSubmit={this.handleSubmit}>
 
         <div>
           <input
@@ -36,7 +45,7 @@ export default class PortfolioForm extends Component {
           name="name"
           placeholder="Portfolio Item Name"
           value={this.state.name}
-          onchange={this.handleChange}
+          onChange={this.handleChange}
           />
         
           <input
@@ -44,7 +53,7 @@ export default class PortfolioForm extends Component {
           name="url" // must match the ones on the state list
           placeholder="URL"
           value={this.state.url}
-          onchange={this.handleChange}
+          onChange={this.handleChange}
           />
         </div>
 
@@ -54,7 +63,7 @@ export default class PortfolioForm extends Component {
           name="position"
           placeholder="Position"
           value={this.state.position}
-          onchange={this.handleChange}
+          onChange={this.handleChange}
           />
         
           <input
@@ -62,7 +71,7 @@ export default class PortfolioForm extends Component {
           name="category" 
           placeholder="Category"
           value={this.state.category}
-          onchange={this.handleChange}
+          onChange={this.handleChange}
           />
         </div>
 
@@ -72,12 +81,12 @@ export default class PortfolioForm extends Component {
             name="description" 
             placeholder="description"
             value={this.state.description}
-            onchange={this.handleChange}
+            onChange={this.handleChange}
             />
         </div>
 
         <div>
-              <button type="submit">Save</button>
+          <button type="submit">Save</button>
         </div>
         
       
