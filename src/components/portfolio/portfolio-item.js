@@ -6,7 +6,7 @@ export default class PortfolioItem extends Component {
         super(props);
 
         this.state = {
-            portfolItemClass: ""
+            portfolioItemClass: ""
         };
     }
 
