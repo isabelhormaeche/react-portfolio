@@ -30,15 +30,15 @@ export default class PortfolioForm extends Component {
       return {
         iconFiletypes:[".jpeg", ".png"],
         showFiletypeIcon: true,
-        postUrl:"https://httpbin.org/post" //mocking a Url
+        postUrl:"https://httpbin.org/post" //mocking a Url always returns true
       }
     }
 
     djsConfig() {
       return {
         addRemoveLinks: true,
-        maxfiles: 1
-      };
+        maxFiles: 1
+      }
     }
 
     buildForm() {
@@ -139,7 +139,7 @@ export default class PortfolioForm extends Component {
           <DropzoneComponent
             config={this.componentConfig()}
             dsjConfig={this.djsConfig()}
-         />
+          />
         </div>
 
         <div>
