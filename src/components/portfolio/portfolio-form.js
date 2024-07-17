@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
+import DropzoneComponent from "react-dropzone-component";
+
+import "../../../node_modules/react-dropzone-component/styles/filepicker.css";
+import "../../../node_modules/dropzone/dist/min/dropzone.min.css";
 
 import DropzoneComponent from "react-dropzone-component";
 
@@ -52,7 +56,18 @@ export default class PortfolioForm extends Component {
       formData.append("portfolio_item[url]", this.state.url);
       formData.append("portfolio_item[category]", this.state.category);
       formData.append("portfolio_item[position]", this.state.position);
+      
+      if (this.state.thumb_image) {
+        formData.append("portfolio_item[thumb_image]", this.state.thumb_image);
+      }
 
+      if (this.state.banner_image) {
+        formData.append("portfolio_item[banner_image]", this.state.banner_image);
+      }
+
+      if (this.state.logo) {
+        formData.append("portfolio_item[logo]", this.state.logo);
+      }
       //debugger;
       return formData;
     }
@@ -73,6 +88,22 @@ export default class PortfolioForm extends Component {
       .then(response => {
         this.props.handleSuccessfulFormSubmission(response.data.portfolio_item);
         //console.log("response", response);
+
+        this.setState ({
+          name: "",
+          description: "",
+          category: "eCommerce",
+          position: "",
+          url:"",
+          thumb_image: "",
+          banner_image: "",
+          logo: ""
+        });
+
+
+        [this.thumbRef, this.bannerRef, this.logoRef].forEach(ref=> {
+          ref.current.dropzone.removeAllFiles();
+        });
         
       })
       .catch(error => {
