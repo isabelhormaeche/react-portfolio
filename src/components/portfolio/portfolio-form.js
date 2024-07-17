@@ -26,6 +26,31 @@ export default class PortfolioForm extends Component {
       this.handleSubmit = this.handleSubmit.bind(this);
       this.componentConfig = this.componentConfig.bind(this);
       this.djsConfig = this.djsConfig.bind(this);
+      this.handleThumbDrop = this.handleThumbDrop.bind(this);
+      this.handleBannerDrop = this.handleBannerDrop.bind(this);
+      this.handleLogoDrop = this.handleLogoDrop.bind(this);
+
+      this.thumbRef = React.createRef();
+      this.bannerRef = React.createRef();
+      this.logoRef = React.createRef();
+    }
+
+    handleThumbDrop() {
+      return {
+        addedfile: file => this.setState({ thumb_image: file })
+      };
+    }
+
+    handleBannerDrop() {
+      return {
+        addedfile: file => this.setState({ banner_image: file })
+      };
+    }
+  
+    handleLogoDrop() {
+      return {
+        addedfile: file => this.setState({ logo: file })
+      };
     }
 
   
@@ -113,10 +138,9 @@ export default class PortfolioForm extends Component {
 
   render() {
     return (
-      <div>
-        <h1>PortfolioForm</h1>
       
-        <form onSubmit={this.handleSubmit}>
+      
+        <form onSubmit={this.handleSubmit} className="portfolio-form-wrapper">
 
         <div>
           <input
@@ -168,8 +192,24 @@ export default class PortfolioForm extends Component {
 
         <div className="image-uploaders">
             <DropzoneComponent
+              ref={this.thumbRef}
               config={this.componentConfig()}
               djsConfig={this.djsConfig()}
+              eventHandlers={this.handleThumbDrop()}
+            />
+
+            <DropzoneComponent
+              ref={this.bannerRef}
+              config={this.componentConfig()}
+              djsConfig={this.djsConfig()}
+              eventHandlers={this.handleBannerDrop()}
+            />
+
+            <DropzoneComponent
+              ref={this.logoRef}
+              config={this.componentConfig()}
+              djsConfig={this.djsConfig()}
+              eventHandlers={this.handleLogoDrop()}
             />
           </div>
 
@@ -179,7 +219,7 @@ export default class PortfolioForm extends Component {
         
       
       </form>
-      </div>
+     
     );
   }
 }
