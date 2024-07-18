@@ -9,4 +9,12 @@
     input{
        margin-bottom: 0px;    } 
 //to override bottom margin that we gave inside of our mixin input-element
+    
+    .image-uploaders {
+      @include base-grid();
+      //display: grid;
+      grid-template-columns: 200px 200px 200px;
+      //grid-gap: 21px;
+    }
+
   }
