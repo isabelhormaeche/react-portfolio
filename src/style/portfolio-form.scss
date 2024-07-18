@@ -1,7 +1,12 @@
 .portfolio-form-wrapper {
     display: grid;
     grid-template-columns: 1fr;
+    grid-gap: 21px;
     padding: 42px;
   
     @include input-element();
+     
+    input{
+       margin-bottom: 0px;    } 
+//to override bottom margin that we gave inside of our mixin input-element
   }
