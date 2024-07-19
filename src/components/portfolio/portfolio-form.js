@@ -35,6 +35,38 @@ export default class PortfolioForm extends Component {
       this.logoRef = React.createRef();
     }
 
+    //every single time that a user makes a change such as typing the form, this is going to get fired:
+    componentDidUpdate() {
+      if (Object.keys(this.props.portfolioToEdit).length > 0) {
+        const {
+          id,
+          name,
+          description,
+          category,
+          position,
+          url,
+          thumb_image_url,
+          banner_image_url,
+          logo_url
+        } = this.props.portfolioToEdit;
+
+        // After grabbing the data
+        this.props.clearPortfolioToEdit(); // when call function -> set state back to its initial state-> empty object
+        // and next time componentDidUpdate will skip Object.keys cause lenght=0 (this.props.portfolioToEdit is empty, was cleared up)
+
+        this.setState({
+          id: id,
+          name: name || "",
+          description: description || "",
+          category: category || "eCommerce",
+          position: position || "",
+          url: url || ""
+        });
+      }
+    }
+
+
+
     handleThumbDrop() {
       return {
         addedfile: file => this.setState({ thumb_image: file })
