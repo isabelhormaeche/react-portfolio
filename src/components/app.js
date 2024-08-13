@@ -7,7 +7,11 @@ import {
 import axios from "axios";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faSignOutAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
+import { 
+  faTrash, 
+  faSignOutAlt, 
+  faEdit 
+} from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -41,6 +45,7 @@ export default class App extends Component {
     this.setState ({ 
       loggedInStatus: "LOGGED_IN"
     });
+    //console.log("Login successful");
   }
   
   
@@ -48,12 +53,14 @@ export default class App extends Component {
     this.setState  ({ 
       loggedInStatus: "NOT_LOGGED_IN"
     });
+    //console.log("Login unsuccessful");
   }
   
   handleSuccessfulLogout() {
     this.setState ({ 
       loggedInStatus: "NOT_LOGGED_IN"
     });
+    //console.log("Logout successful");
 
   }
 
@@ -63,7 +70,7 @@ export default class App extends Component {
           withCredentials: true
         })
         .then(response => {
-        console.log("loggged_in return", response);
+        console.log("loggged_in return", response); // API response
         const loggedIn = response.data.logged_in;
         const loggedInStatus = this.state.loggedInStatus;
 

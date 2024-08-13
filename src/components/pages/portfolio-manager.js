@@ -19,11 +19,11 @@ export default class PortfolioManager extends Component {
         this.clearPortfolioToEdit = this.clearPortfolioToEdit.bind(this);
     }
 
-    clearPortfolioToEdit () {
-      this.setState({
-        portfolioToEdit:{} //set it back to its initial state
-      });
-    }
+     clearPortfolioToEdit () {
+       this.setState({
+         portfolioToEdit:{} //set it back to its initial state
+       });
+     }
 
     handleEditClick(portfolioItem) {
         this.setState({
@@ -99,7 +99,7 @@ export default class PortfolioManager extends Component {
                         handleSuccessfulFormSubmission = {this.handleSuccessfulFormSubmission}
                         handleFormSubmissionError = {this.handleFormSubmissionError}
                         clearPortfolioToEdit={this.clearPortfolioToEdit}
-                        portfolioToEdit={this.props.portfolioToEdit}
+                        portfolioToEdit={this.state.portfolioToEdit}
                     />
                 </div>
 
