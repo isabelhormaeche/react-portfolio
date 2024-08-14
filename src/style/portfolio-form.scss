@@ -23,6 +23,31 @@
           object-fit: cover;
           border-radius: 5px;;
         }
+
+        .image-removal-link {
+          display: flex;
+          justify-content: center;
+
+          // Option with TEXT "Remove file":
+           a{
+             font-weight: 600; // intead of 900 -> too thick
+             color: $warning;
+             cursor: pointer;
+           }
+          
+          // Option with "delete-left" ICON:
+           .action-icon{
+               cursor: pointer;
+               //color: $grey;
+               color: $teal;
+               font-size: 1.5em;
+               transition: 0.5s ease-in-out;
+      
+               &:hover {
+                 color: $warning;
+               }
+            }
+          }
       }
 
   }

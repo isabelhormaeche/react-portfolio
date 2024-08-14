@@ -5,7 +5,7 @@ import DropzoneComponent from "react-dropzone-component";
 import "../../../node_modules/react-dropzone-component/styles/filepicker.css";
 import "../../../node_modules/dropzone/dist/min/dropzone.min.css";
 
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default class PortfolioForm extends Component {
     constructor(props) {
@@ -32,10 +32,15 @@ export default class PortfolioForm extends Component {
       this.handleThumbDrop = this.handleThumbDrop.bind(this);
       this.handleBannerDrop = this.handleBannerDrop.bind(this);
       this.handleLogoDrop = this.handleLogoDrop.bind(this);
+      this.deleteImage = this.deleteImage.bind(this);
 
       this.thumbRef = React.createRef();
       this.bannerRef = React.createRef();
       this.logoRef = React.createRef();
+    }
+
+    deleteImage(imageType) {
+      console.log("deleteImage", imageType);
     }
 
      //every single time that a user makes a change such as typing the form, this is going to get fired:
@@ -246,7 +251,13 @@ export default class PortfolioForm extends Component {
         {this.state.thumb_image && this.state.editMode ? (
           <div className="portfolio-manager-image-wrapper">
               <img src={this.state.thumb_image} />
-            </div>
+
+              <div className="image-removal-link">
+                <a onClick={() => this.deleteImage("thumb_image")}>
+                  Remove file
+                </a>
+              </div>
+          </div>
         )  : (
             <DropzoneComponent
               ref={this.thumbRef}
@@ -262,7 +273,13 @@ export default class PortfolioForm extends Component {
         {this.state.banner_image && this.state.editMode ? (
           <div className="portfolio-manager-image-wrapper">
               <img src={this.state.banner_image} />
-            </div>
+              
+              <div className="image-removal-link">
+                <a onClick={() => this.deleteImage("banner_image")}>
+                  Remove file
+                </a>
+              </div>
+          </div>
         )  : (
             <DropzoneComponent
               ref={this.bannerRef}
@@ -278,6 +295,29 @@ export default class PortfolioForm extends Component {
         {this.state.logo && this.state.editMode ? (
           <div className="portfolio-manager-image-wrapper">
               <img src={this.state.logo} />
+
+              {/* Option with "Remove file" TEXT: 
+
+              <div className="image-removal-link">
+                <a onClick={() => this.deleteImage("banner_image")}>
+                  Remove file
+                </a>
+              </div> */}
+
+
+               {/* Option with "delete-left" ICON instead of "Remove file" text: 
+               Added faDeleteLeft FontAwesomeIcon to app.js*/}
+               
+              <div className="image-removal-link">
+                <a 
+                className="action-icon"
+                onClick={() => this.deleteImage("logo")}
+                >
+                  <FontAwesomeIcon icon="delete-left" />
+                </a>
+              </div>
+
+
             </div>
         )  : ( 
             <DropzoneComponent
