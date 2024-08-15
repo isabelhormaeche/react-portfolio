@@ -40,7 +40,22 @@ export default class PortfolioForm extends Component {
     }
 
     deleteImage(imageType) {
-      console.log("deleteImage", imageType);
+      axios
+      .delete(
+        `https://api.devcamp.space/portfolio/delete-portfolio-image/${this.state
+          .id}?image_type=${imageType}`,
+        { withCredentials: true }
+      )
+      .then(response => {
+        //console.log("deleteImage", response);        
+        this.setState({
+          [`${imageType}_url`]: ""  //whenever you do not know the exact name of the key -> we wrap it inside of a bracket [].
+         });
+         
+      })
+      .catch(error => {
+        console.log("deleteImage error", error);
+      });
     }
 
      //every single time that a user makes a change such as typing the form, this is going to get fired:
@@ -253,7 +268,7 @@ export default class PortfolioForm extends Component {
               <img src={this.state.thumb_image_url} />
 
               <div className="image-removal-link">
-                <a onClick={() => this.deleteImage("thumb_image")}>
+                <a onClick={() => this.deleteImage("thumb_image")}> 
                   Remove file
                 </a>
               </div>
