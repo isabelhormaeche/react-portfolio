@@ -19,7 +19,7 @@ class Blog extends Component {
           withCredentials:true
         })
         .then(response => {
-            console.log("response", response);
+            //console.log("response", response);
             this.setState({
                 blogItems: response.data.portfolio_blogs
             })
