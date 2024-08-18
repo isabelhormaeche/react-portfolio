@@ -8,8 +8,10 @@ class Blog extends Component {
         super();
 
         this.state = {
-            blogItems: []
-        }
+            blogItems: [],
+            totalCount: 0,
+            currentPage: 0
+        };
 
         this.getBlogItems = this.getBlogItems.bind(this);
         this.activateInfiniteScroll();
@@ -26,29 +28,33 @@ class Blog extends Component {
             //     document.documentElement.offsetHeight
             // );
 
-            // if (
-            //     window.innerHeight + document.documentElement.scrollTop ===
-            //     document.documentElement.offsetHeight
-            //   ) {
-            //     console.log("get more posts");
-            //   }
+             if (
+                 window.innerHeight + document.documentElement.scrollTop ===
+                 document.documentElement.offsetHeight
+               ) {
+                 console.log("get more posts");
+               }
 
-                 if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 1) {
-                console.log("get more posts");
-                }
-
-
+                //  if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 1) {
+                // console.log("get more posts");
+                // }
         };
     }
 
     getBlogItems() {
+        this.setState({
+            currentPage: this.state.currentPage + 1
+          });
+
         axios.get("https://isabelhormaeche.devcamp.space/portfolio/portfolio_blogs" , {
           withCredentials:true
         })
         .then(response => {
             //console.log("response", response);
+            //debugger;
             this.setState({
-                blogItems: response.data.portfolio_blogs
+                blogItems: response.data.portfolio_blogs,
+                totalCount: response.data.meta.total_records
             })
         })
         .catch(error => {
