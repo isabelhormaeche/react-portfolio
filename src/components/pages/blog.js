@@ -21,41 +21,40 @@ class Blog extends Component {
 
     activateInfiniteScroll() {
         window.onscroll = () => {
-            //console.log("onscroll");
-            // console.log("window.innerHeight", window.innerHeight);
-            // console.log("document.documentElement.scrollTop", 
-            //     document.documentElement.scrollTop
-            // );
-            // console.log("document.documentElement.offsetHeight", 
-            //     document.documentElement.offsetHeight
-            // );
 
-             if (
-                 window.innerHeight + document.documentElement.scrollTop ===
-                 document.documentElement.offsetHeight
-               ) {
-                 console.log("get more posts");
-               }
+            if (
+                this.state.isLoading ||
+                this.state.blogItems.length === this.state.totalCount
+              ) {
+                return;
+              }
 
-                //  if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 1) {
-                // console.log("get more posts");
-                // }
-        };
-    }
+              // Se resta 1 en la condición para asegurar que la función se active justo antes de llegar al final de la página, evitando problemas de precisión.
+              // Especialmente en dispositivos con diferentes resoluciones o navegadores que manejan el redondeo de manera diferente.
+              // Opción Jordan, sin restar 1, no funciona en mi browser:
+            if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 1
+
+            ) {
+                this.getBlogItems();
+                }
+                
+               
+        }
+    };
+
 
     getBlogItems() {
         this.setState({
             currentPage: this.state.currentPage + 1
           });
 
-        axios.get("https://isabelhormaeche.devcamp.space/portfolio/portfolio_blogs" , {
+        axios.get(`https://isabelhormaeche.devcamp.space/portfolio/portfolio_blogs?page=${this.state.currentPage}` , {
           withCredentials:true
         })
         .then(response => {
-            //console.log("response", response);
-            //debugger;
+            console.log("getting", response.data);
             this.setState({
-                blogItems: response.data.portfolio_blogs,
+                blogItems: this.state.blogItems.concat(response.data.portfolio_blogs),
                 totalCount: response.data.meta.total_records,
                 isLoading: false
             })
