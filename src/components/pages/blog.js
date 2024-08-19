@@ -16,12 +16,11 @@ class Blog extends Component {
         };
 
         this.getBlogItems = this.getBlogItems.bind(this);
-        this.activateInfiniteScroll();
+        this.onScroll = this.onScroll.bind(this);
+        window.addEventListener("scroll",this.onScroll, false);
     }
 
-    activateInfiniteScroll() {
-        window.onscroll = () => {
-
+    onScroll() {
             if (
                 this.state.isLoading ||
                 this.state.blogItems.length === this.state.totalCount
@@ -29,17 +28,12 @@ class Blog extends Component {
                 return;
               }
 
-              // Se resta 1 en la condición para asegurar que la función se active justo antes de llegar al final de la página, evitando problemas de precisión.
-              // Especialmente en dispositivos con diferentes resoluciones o navegadores que manejan el redondeo de manera diferente.
-              // Opción Jordan, sin restar 1, no funciona en mi browser:
-            if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 1
+            if (window.innerHeight + document.documentElement.scrollTop >= 
+                document.documentElement.offsetHeight - 1
 
             ) {
                 this.getBlogItems();
                 }
-                
-               
-        }
     };
 
 
@@ -66,6 +60,10 @@ class Blog extends Component {
 
     componentWillMount(){
         this.getBlogItems();
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("scroll", this.onScroll, false );
     }
 
     render() {
