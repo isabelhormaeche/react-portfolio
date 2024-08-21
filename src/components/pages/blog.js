@@ -19,7 +19,7 @@ class Blog extends Component {
 
         this.getBlogItems = this.getBlogItems.bind(this);
         this.onScroll = this.onScroll.bind(this);
-        window.addEventListener("scroll",this.onScroll, false);
+        window.addEventListener("scroll", this.onScroll, false);
         this.handleNewBlogClick = this.handleNewBlogClick.bind(this);
         this.handleModalClose = this.handleModalClose.bind(this);
     }
@@ -52,8 +52,9 @@ class Blog extends Component {
 
             ) {
                 this.getBlogItems();
-                }
-    };
+                console.log("get more posts");
+            }
+    }
 
 
     getBlogItems() {
@@ -70,7 +71,7 @@ class Blog extends Component {
                 blogItems: this.state.blogItems.concat(response.data.portfolio_blogs),
                 totalCount: response.data.meta.total_records,
                 isLoading: false
-            })
+            });
         })
         .catch(error => {
             console.log("getBlogItems error", error);
@@ -81,9 +82,11 @@ class Blog extends Component {
         this.getBlogItems();
     }
 
-    componentWillUnmount() {
-        window.removeEventListener("scroll", this.onScroll, false );
+     componentWillUnmount() {
+         window.removeEventListener("scroll", this.onScroll, false );
     }
+
+    
 
     render() {
         const blogRecords = this.state.blogItems.map(blogItem => {
