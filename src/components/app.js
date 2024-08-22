@@ -12,7 +12,8 @@ import {
   faSignOutAlt, 
   faEdit,
   faDeleteLeft, // for adding "delete" icon to  DropzoneComponent
-  faSpinner
+  faSpinner,
+  faPlusCircle
 } 
 from "@fortawesome/free-solid-svg-icons";
 
@@ -29,7 +30,7 @@ import PortfolioDetail from "./portfolio/portfolio-detail";
 import Auth from "./pages/auth";
 import NoMatch from "./pages/no-match";
 
-library.add(faTrash, faSignOutAlt, faEdit, faDeleteLeft, faSpinner);
+library.add(faTrash, faSignOutAlt, faEdit, faDeleteLeft, faSpinner, faPlusCircle);
 
 export default class App extends Component {
   constructor(props){

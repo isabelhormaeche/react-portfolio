@@ -2,6 +2,32 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+
+    .new-blog-link {
+      right: 0;
+      // at the top right hand corner
+      // position:absolute;
+      // top: 0;
+
+      // at the bottom right hand corner:
+      position: fixed;
+      bottom: 0;
+
+      a {
+        font-size: 3em;
+        cursor: pointer;
+        color: $teal;
+        margin-right: 15px;
+        margin-bottom: 15px; // added when icon at the bottom corner
+        transition: 0.5s ease-in-out;
+
+        &:hover {
+          color: $dark-teal;
+        }
+
+      }
+    }
   
     .content-container {
       display: flex;
