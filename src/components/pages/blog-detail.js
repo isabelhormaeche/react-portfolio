@@ -15,7 +15,9 @@ export default class BlogDetail extends Component {
   getBlogItem() {
     axios
       .get(
-        `https://isabelhormaeche.devcamp.space/portfolio/portfolio_blogs/${this.state
+        // testing a new BLOG DataBase: isabelhmai 
+         //for removing 3 old blogs that keep showing up from corrupted July DataBase:
+        `https://isabelhmai.devcamp.space/portfolio/portfolio_blogs/${this.state
           .currentId}`
       )
       .then(response => {
@@ -30,12 +32,13 @@ export default class BlogDetail extends Component {
   }
 
   componentDidMount() {
+    console.log("getBlogItem: Cargando blog..." );
     this.getBlogItem();
   }
 
 
   render() {
-    //console.log("currentID", this.state.currentId);
+    console.log("currentID", this.state.currentId);
 
     const {
       title,

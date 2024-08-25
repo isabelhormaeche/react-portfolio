@@ -92,6 +92,7 @@ export default class App extends Component {
   componentDidMount() {
     this.checkLoginStatus();
     console.log("se activa componentDidMount");
+    console.log("LoggedInStatus:", this.props.loggedInStatus);
   }
 
   authorizedPages() {

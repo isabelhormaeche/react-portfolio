@@ -10,6 +10,8 @@ const BlogItem = props => {
         featured_image_url
       } = props.blogItem;
 
+      //console.log("props.blogItem", props.blogItem)
+
       return (
         <div>
           <Link to={`/b/${id}`}>

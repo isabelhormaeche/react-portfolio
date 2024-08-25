@@ -9,6 +9,8 @@ class Blog extends Component {
     constructor() {
         super();
 
+        //console.log("Constructor: Blog component is being constructed");
+
         this.state = {
             blogItems: [],
             totalCount: 0,
@@ -58,14 +60,23 @@ class Blog extends Component {
                 return;
               }
 
-            // if (window.innerHeight + document.documentElement.scrollTop >= 
-            //     document.documentElement.offsetHeight - 1
-            if (window.innerHeight + document.documentElement.scrollTop === 
-                    document.documentElement.offsetHeight
+               if (window.innerHeight + document.documentElement.scrollTop >= 
+                   document.documentElement.offsetHeight - 1
+
+            //  if (window.innerHeight + document.documentElement.scrollTop === 
+            //          document.documentElement.offsetHeight
+
+            // Math.ceil: para redondear hacia arriba la posición de desplazamiento, asegurando que la condición se cumpla incluso si hay pequeños errores de redondeo
+            // if (
+            //     window.innerHeight + Math.ceil(document.documentElement.scrollTop) === document.documentElement.offsetHeight
 
             ) {
                 this.getBlogItems();
                 console.log("get more posts");
+                // this.setState({
+                //     isLoading: true
+                //   });
+
             }
     }
 
@@ -75,9 +86,11 @@ class Blog extends Component {
             currentPage: this.state.currentPage + 1
           });
 
-        axios.get(`https://isabelhormaeche.devcamp.space/portfolio/portfolio_blogs?page=${this.state.currentPage}` , {
-          withCredentials:true
-        })
+         // testing a new BLOG DataBase: isabelhmai 
+         //for removing 3 old blogs that keep showing up from corrupted July DataBase:
+        axios.get(`https://isabelhmai.devcamp.space/portfolio/portfolio_blogs?page=${this.state.currentPage}`,
+            { withCredentials: true } 
+        )
         .then(response => {
             console.log("getting", response.data);
             this.setState({
@@ -91,12 +104,22 @@ class Blog extends Component {
         });
     }
 
-    componentWillMount(){
+    componentDidMount() {
+     //componentWillMount(){
+        console.log("componentWillMount:getBlogItems: Cargando blogs..." );
+        console.log("LoggedInStatus en Blog:", this.props.loggedInStatus);
         this.getBlogItems();
     }
 
-     componentWillUnmount() {
+    componentWillUnmount() {
          window.removeEventListener("scroll", this.onScroll, false );
+        //  if ('caches' in window) {
+        //     caches.keys().then(names => {
+        //       names.forEach(name => {
+        //         caches.delete(name);
+        //       });
+        //     });
+        //   }
     }
 
     
@@ -104,7 +127,7 @@ class Blog extends Component {
     render() {
         const blogRecords = this.state.blogItems.map(blogItem => {
             //return <h1>{blogItem.title}</h1>;
-            return <BlogItem key={blogItem.id} blogItem={blogItem} />
+             return <BlogItem key={blogItem.id} blogItem={blogItem} />
         });
       
 
