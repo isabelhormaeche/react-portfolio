@@ -26,7 +26,8 @@ export default class BlogForm extends Component {
 
     handleSubmit(event) {
       axios.post(
-        "https://isabelhormaeche.devcamp.space/portfolio/portfolio_blogs", 
+        //Changed API POST url in blogForm component
+        "https://isabelhmai.devcamp.space/portfolio/portfolio_blogs", 
         this.buildForm(),
       {withCredentials: true}
      )
