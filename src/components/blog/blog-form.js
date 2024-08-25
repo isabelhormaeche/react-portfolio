@@ -43,13 +43,16 @@ export default class BlogForm extends Component {
       {withCredentials: true}
      )
      .then(response => {
-       this.props.handleSuccessfullFormSubmission(response.data.portfolio_blog);
-       //console.log("response data", response.data);
+        this.setState({
+          title: "",
+          blog_status:"",
+          content: ""
+        });
 
-       this.setState({
-        title: "",
-        blog_status:""
-       });
+        this.props.handleSuccessfullFormSubmission(
+          response.data.portfolio_blog
+        );
+       //console.log("response data", response.data);
      })
      .catch(error => {
       console.log("handleSubmit for blog error", error);
