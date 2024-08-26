@@ -23,6 +23,8 @@ export default class BlogForm extends Component {
         this.djsConfig = this.djsConfig.bind(this);
         this.handleFeaturedImageDrop = this.handleFeaturedImageDrop.bind(this);
 
+        this.featuredImageRef = React.createRef(); // for clearing off Dropzone
+
     }
 
     componentConfig() {
@@ -59,6 +61,13 @@ export default class BlogForm extends Component {
       formData.append("portfolio_blog[blog_status]", this.state.blog_status);
       formData.append("portfolio_blog[content]", this.state.content);
 
+      if (this.state.featured_image) {
+        formData.append(
+          "portfolio_blog[featured_image]",
+          this.state.featured_image
+        );
+      }
+
       return formData;
     }
 
@@ -70,11 +79,18 @@ export default class BlogForm extends Component {
       {withCredentials: true}
      )
      .then(response => {
+      // for clearing off Dropzone:
+       if (this.state.featured_image) {
+         this.featuredImageRef.current.dropzone.removeAllFiles();
+       }
+
         this.setState({
           title: "",
           blog_status:"",
-          content: ""
+          content: "",
+          featured_image: ""
         });
+
 
         this.props.handleSuccessfullFormSubmission(
           response.data.portfolio_blog
@@ -126,6 +142,7 @@ export default class BlogForm extends Component {
 
         <div className="image-uploaders">
           <DropzoneComponent
+            ref={this.featuredImageRef}
             config={this.componentConfig()} // added () cause we want to run right away
             djsConfig={this.djsConfig()}
             eventHandlers={this.handleFeaturedImageDrop()}
