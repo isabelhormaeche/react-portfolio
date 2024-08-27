@@ -9,10 +9,11 @@ export default class BlogForm extends Component {
         super(props);
 
         this.state = {
-            title: "",
-            blog_status: "",
-            content: "",
-            featured_image:""
+          id: "",
+          title: "",
+          blog_status: "",
+          content: "",
+          featured_image:""
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -25,6 +26,17 @@ export default class BlogForm extends Component {
 
         this.featuredImageRef = React.createRef(); // for clearing off Dropzone
 
+    }
+
+    componentDidMount() {
+      if (this.props.editMode) {
+        //pre-populate some of the data:
+        this.setState({
+          id: this.props.blogToEdit.id,
+          title: this.props.blogToEdit.title,
+          status: this.props.blogToEdit.blog_status
+        });
+      }
     }
 
     componentConfig() {
