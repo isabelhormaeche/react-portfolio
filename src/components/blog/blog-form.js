@@ -161,6 +161,21 @@ export default class BlogForm extends Component {
         </div>
 
         <div className="image-uploaders">
+          {this.props.editMode && this.props.blogToEdit.featured_image_url ? (
+            // <h1>Image goes here...</h1> 
+            <div className="portfolio-manager-image-wrapper">
+              <img src={this.props.blogToEdit.featured_image_url} />
+
+              <div className="image-removal-link">
+                <a>Remove file</a>
+                
+                  
+              </div>
+          </div>
+
+
+          ) : (
+         
           <DropzoneComponent
             ref={this.featuredImageRef}
             config={this.componentConfig()} // added () cause we want to run right away
@@ -169,6 +184,7 @@ export default class BlogForm extends Component {
           >
             <div className="dz-message">Featured Image</div> 
           </DropzoneComponent>
+          ) }
         </div>
 
         <button className="btn" >Save</button>
