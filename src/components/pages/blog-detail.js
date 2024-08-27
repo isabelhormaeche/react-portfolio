@@ -18,8 +18,16 @@ export default class BlogDetail extends Component {
 
     this.handleEditClick = this.handleEditClick.bind(this);
     this.handleFeaturedImageDelete = this.handleFeaturedImageDelete.bind(this);
+    this.handleUpdateFormsubmission = this.handleUpdateFormsubmission.bind(this);
   }
   
+// Remember:Jordan uses "blog" but I´m using "blogToEdit"
+  handleUpdateFormsubmission(blogToEdit) {
+    this.setState({
+      blogItem: blogToEdit,
+      editMode: false
+    })
+  }
   handleFeaturedImageDelete() {
     this.setState({
       blogItem: {
@@ -75,6 +83,7 @@ export default class BlogDetail extends Component {
         return (
         <BlogForm 
         handleFeaturedImageDelete={this.handleFeaturedImageDelete} 
+        handleUpdateFormsubmission = {this.handleUpdateFormsubmission}
         editMode={this.state.editMode} 
         blogToEdit={this.state.blogItem} 
         />

@@ -13,7 +13,9 @@ export default class BlogForm extends Component {
           title: "",
           blog_status: "",
           content: "",
-          featured_image:""
+          featured_image:"",
+          apiUrl: "https://isabelhmai.devcamp.space/portfolio/portfolio_blogs",
+          apiAction: "post"
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -47,12 +49,28 @@ export default class BlogForm extends Component {
 
     componentWillMount() {
       if (this.props.editMode) {
-        //pre-populate some of the data:
-        this.setState({
-          id: this.props.blogToEdit.id,
-          title: this.props.blogToEdit.title,
-          status: this.props.blogToEdit.blog_status
-        });
+        // destructuring:
+        const { id, title, blog_status, content } = this.props.blogToEdit;
+      this.setState({
+        id,
+        title,
+        blog_status,
+        content,
+        apiUrl: `https://isabelhmai.devcamp.space/portfolio/portfolio_blogs/${id}`,
+        apiAction: "patch"
+      });
+
+        // this.setState({
+        //   id: this.props.blogToEdit.id,
+        //   title: this.props.blogToEdit.title,
+        //   blog_status: this.props.blogToEdit.blog_status,
+        //   content: this.props.blogToEdit.content,
+        //   apiUrl: `https://isabelhmai.devcamp.space/portfolio/portfolio_blogs/${
+        //     this.props.blogToEdit.id
+
+        //   }`,
+        //   apiAction: "patch"
+        // });
       }
     }
 
@@ -100,13 +118,13 @@ export default class BlogForm extends Component {
       return formData;
     }
 
-    handleSubmit(event) {
-      axios.post(
-        //Changed API POST url in blogForm component
-        "https://isabelhmai.devcamp.space/portfolio/portfolio_blogs", 
-        this.buildForm(),
-      {withCredentials: true}
-     )
+    handleSubmit (event) {
+      axios({
+        method: this.state.apiAction,
+        url: this.state.apiUrl,
+        data: this.buildForm(),
+        withCredentials: true
+    })
      .then(response => {
       // for clearing off Dropzone:
        if (this.state.featured_image) {
@@ -121,9 +139,14 @@ export default class BlogForm extends Component {
         });
 
 
-        this.props.handleSuccessfullFormSubmission(
-          response.data.portfolio_blog
-        );
+        if(this.props.editMode) {
+          // Update blog detail
+          this.props.handleUpdateFormSubmission(response.data.portfolio_blog);
+        } else { // Update the blog modal
+          this.props.handleSuccessfullFormSubmission(
+            response.data.portfolio_blog
+          );
+        }
        //console.log("response data", response.data);
      })
      .catch(error => {
