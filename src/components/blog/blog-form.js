@@ -28,7 +28,7 @@ export default class BlogForm extends Component {
 
     }
 
-    componentDidMount() {
+    componentWillMount() {
       if (this.props.editMode) {
         //pre-populate some of the data:
         this.setState({
@@ -149,6 +149,14 @@ export default class BlogForm extends Component {
         <div className="one-column">
           <RichTextEditor 
            handleRichTextEditorChange = {this.handleRichTextEditorChange}
+           editMode={this.props.editMode} // from BlogDetail parent component
+           // pass content only if we´re in editMode and there´s content:
+           contentToEdit={
+            this.props.editMode && this.props.blogToEdit.content 
+            ? this.props.blogToEdit.content 
+            : null
+          }
+
           />
         </div>
 
