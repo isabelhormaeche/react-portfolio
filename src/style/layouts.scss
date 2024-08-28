@@ -1,0 +1,18 @@
+// for BAOUT and CONTACT page
+
+.content-page-wrapper {
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    // height: 100vh; //overflow cause doesn´t care 
+    //about the navigation component(84px tall)
+    height: calc(100vh - 84px); //Now no scrolling or any kind of overflow happening below the page
+  
+     .right-column {
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       flex-direction: column;
+       padding: 100px;
+     }
+  }
