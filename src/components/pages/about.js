@@ -14,6 +14,7 @@ export default function(){
             //background: "url(" + profilePicture + ") no-repeat center/cover" 
             //permite definir múltiples propiedades en una sola línea.
             background: "url(" + profilePicture + ") no-repeat", 
+            backgroundSize: "cover",
             backgroundPosition: 'center' // Centra la imagen
         }}
            />
