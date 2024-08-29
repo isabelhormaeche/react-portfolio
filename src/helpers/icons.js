@@ -8,7 +8,8 @@ import {
     faPlusCircle,
     faPhone,
     faEnvelope,
-    faMapMarkedAlt
+    faMapMarkedAlt,
+    faLock
 
 } 
 from "@fortawesome/free-solid-svg-icons";
@@ -20,7 +21,9 @@ const Icons = () => {
         faTrash, faSignOutAlt, faEdit, faDeleteLeft, faSpinner, faPlusCircle,
         faPhone,
         faEnvelope,
-        faMapMarkedAlt);
+        faMapMarkedAlt,
+        faLock
+    );
 };
 
 export default Icons;
