@@ -20,26 +20,32 @@ export default class PortfolioContainer extends Component {
 
 
    handleFilter(filter) {
-// el argumento podía llamarse también "selectedCategory" o algo similar para que coincida con el propósito de la función
-
-    this.setState({
-        data: this.state.data.filter(item => {
-            return item.category === filter;
-        })
-    });
+    // el argumento podía llamarse también "selectedCategory" o algo similar para que coincida con el propósito de la función
+        if (filter === "CLEAR_FILTERS") {
+            this.getPortfolioItems();
+        } else {
+            this.getPortfolioItems(filter);
+        }
     }
+    
 
-    getPortfolioItems() {
+    getPortfolioItems(filter = null) { // filter is optional
         axios
           .get("https://isabelhormaeche.devcamp.space/portfolio/portfolio_items")
           .then(response => {
-// "reponse" no es una key word, puede ser cualquier otra palabra (ejemplo:res) similar para que coincida con el propósito de la función
-
-            // console.log("response data", response);
-            this.setState({
+            if(filter) {
+                this.setState({
+                    data: response.data.portfolio_items.filter(item => {
+                        return item.category === filter;
+                })
+            });
+            } else {
+                this.setState({
                 data: response.data.portfolio_items
+            });
+
+            }
             })
-          })
           .catch(error => {
             console.log(error);
           });
@@ -67,14 +73,15 @@ export default class PortfolioContainer extends Component {
         }
 
         return (
-            <div className="portfolio-items-wrapper">
+            <div className="homepage-wrapper">
+                <div className="filter-links">
+                    <button className="btn" onClick={() => this.handeFilter("eCommerce")}>eCommerce</button>
+                    <button className="btn" onClick={() => this.handeFilter("Scheduling")}>Scheduling</button>
+                    <button className="btn" onClick={() => this.handeFilter("Enterprise")}>Enterprise</button>
+                    <button className="btn" onClick={() => this.handeFilter("CLEAR_FILTERS")}>ALL</button>
+                </div>
 
-                <button className="btn" onClick={() => this.handeFilter("eCommerce")}>eCommerce</button>
-                <button className="btn" onClick={() => this.handeFilter("Scheduling")}>Scheduling</button>
-                <button className="btn" onClick={() => this.handeFilter("Enterprise")}>Enterprise</button>
-
-                {this.portfolioItems()} 
-                
+                <div className="portfolio-items-wrapper">{this.portfolioItems()}</div>
             </div>
         );
     }
