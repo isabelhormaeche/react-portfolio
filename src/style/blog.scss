@@ -4,6 +4,17 @@
     align-items: center;
     position: relative;
 
+    .admin-blog-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      a {
+        margin-left: 15px;
+        cursor: pointer;
+      }
+    }
+
     .new-blog-link {
       right: 0;
       // at the top right hand corner
@@ -41,6 +52,7 @@
 
         &:hover {
           color: $dark-teal;
+          //color: red;
         }
       }
 

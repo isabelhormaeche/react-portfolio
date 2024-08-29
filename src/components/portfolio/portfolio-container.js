@@ -33,6 +33,7 @@ export default class PortfolioContainer extends Component {
         axios
           .get("https://isabelhormaeche.devcamp.space/portfolio/portfolio_items")
           .then(response => {
+            //console.log("response data", response);
             if(filter) {
                 this.setState({
                     data: response.data.portfolio_items.filter(item => {
