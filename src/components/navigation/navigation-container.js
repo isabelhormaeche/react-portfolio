@@ -58,9 +58,20 @@ const NavigationComponent = (props) => {
                         Blog
                     </NavLink>
                     </div>
+                    
+                    {/* <div className="nav-link-wrapper">
+                    <NavLink exact to="/auth" activeClassName="nav-link-active">
+                        Log in
+                    </NavLink>
+                    </div> */}
                    
                     {props.loggedInStatus === "LOGGED_IN" ? (
                         dynamicLink("/portfolio-manager", "Portfolio Manager")
+                    ) : null }
+                    
+                    {/*  Added dynamic LOG IN to redirect to /auth */}
+                    {props.loggedInStatus === "NOT_LOGGED_IN" ? (
+                        dynamicLink("/auth", "Log in")
                     ) : null }
 
                     
