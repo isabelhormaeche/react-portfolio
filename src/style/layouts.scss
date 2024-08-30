@@ -6,29 +6,29 @@
     grid-template-columns: 1fr 1fr;
     // height: 100vh; //overflow cause doesn´t care 
     //about the navigation component(84px tall)
-    height: calc(100vh - 84px); //Now no scrolling or any kind of overflow happening below the page
-  
+    height: calc(100vh - 84.8px); //Now no scrolling or any kind of overflow happening below the page
+
      .right-column {
        display: flex;
        justify-content: center;
        align-items: center;
        flex-direction: column;
        padding: 100px;
+       
 
        .contact-bullet-points {
         display: grid;
         grid-template-columns: 1fr;
         grid-gap: 21px;
-  
         .bullet-point-group {
           display: flex;
           align-items: center;
-  
+
           .icon {
             font-size: 2em;
             color: $teal;
           }
-  
+
           .text {
             font-size: 1.5em;
             font-weight: 900;

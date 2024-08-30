@@ -18,7 +18,7 @@ export default function(){
             backgroundPosition: 'center' // Centra la imagen
         }}
            />
-                
+           
             <div className="right-column">
             Maecenas faucibus mollis interdum. Integer posuere erat a ante venenatis
         dapibus posuere velit aliquet. Sed posuere consectetur est at lobortis.
@@ -38,7 +38,6 @@ export default function(){
         consectetur ac, vestibulum at eros. Vestibulum id ligula porta felis
         euismod semper.
             </div>
-         
         </div>
     );
 }
